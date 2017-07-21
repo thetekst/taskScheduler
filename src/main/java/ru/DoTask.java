@@ -16,6 +16,6 @@ public class DoTask implements Runnable {
 
     @Override
     public void run() {
-        LOGGER.info("run DoTask");
+        LOGGER.info("run DoTask+++++++++");
     }
 }

@@ -37,7 +37,7 @@ public class DoScheduler {
     @Scheduled(cron = "${cron.upload.scheduler.template}")
     public void initSchedules() {
         if (isTrue) {
-            LOGGER.info("DoScheduler 1: {}", new Date());
+            LOGGER.info("init: {}", new Date());
             final Set<Long> toCancelList = Sets.newHashSet(scheduledUpload.keySet());
             scheduleTemporalActivated(toCancelList);
             toCancelList.forEach(this::cancelTask);
@@ -47,9 +47,9 @@ public class DoScheduler {
     private void scheduleTemporalActivated(final Set<Long> toCancelList) {
         final Runnable task = taskFactory.getNotificationTask();
         final Calendar calendar = Calendar.getInstance();
-
-        if (true) {
-//            taskScheduler.schedule(task, calendar.getTime());
+        final Date now = new Date();
+        if (calendar.getTime().after(now)) {
+            taskScheduler.schedule(task, calendar.getTime());
             LOGGER.info("DoScheduler 2");
         } else {
 //            task.cancelWithComment(statusDate);
