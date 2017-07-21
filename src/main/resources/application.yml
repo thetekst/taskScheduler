@@ -1,0 +1,4 @@
+cron:
+  upload:
+    scheduler:
+      template: '*/1 * * * * *' # do it every 1 second
